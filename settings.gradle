@@ -1,0 +1,4 @@
+include ':common'
+include ':netdemo'
+include ':app'
+rootProject.name = "MyCainiao5"
