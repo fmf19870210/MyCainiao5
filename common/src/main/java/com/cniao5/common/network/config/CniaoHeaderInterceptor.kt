@@ -1,11 +1,10 @@
 package com.cniao5.common.network.config
 
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.DeviceUtils
-import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.*
 import com.cniao5.common.utils.CniaoSpUtils
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
+import okhttp3.CacheControl
 import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -43,10 +42,15 @@ class CniaoHeaderInterceptor : Interceptor {
             "version" to AppUtils.getAppVersionName()
        )
         //从sp里获取token仅在有值(只有在登陆成功后,)的时候才传递，才能添加
-        val localToken =CniaoSpUtils.getString(SP_KEY_USER_TOKEN,originRequest.header("token"))?:""
+      /*  val localToken =CniaoSpUtils.getString(SP_KEY_USER_TOKEN,originRequest.header("token"))?:""
          if(localToken.isNotEmpty()){
              attachHeaders.add("token" to localToken)
-         }
+         }*/
+        val tokenstr = "1A9391C7A85C0880174EC65D6A836FE0"
+        val localToken = SPStaticUtils.getString(SP_KEY_USER_TOKEN, tokenstr)
+        if (localToken.isNotEmpty()) {
+            attachHeaders.add("token" to localToken)
+        }
 
         val signHeaders = mutableListOf<Pair<String, String>>()
         signHeaders.addAll(attachHeaders)
@@ -80,11 +84,23 @@ class CniaoHeaderInterceptor : Interceptor {
                       }
                   }
               }
-       }**
+       }
     //todo 算法：都必须是非空参数！！！  sign = MD5（ascii排序后的 headers及params的key=value拼接&后，最后拼接appkey和value）//32位的大写,
+        val signValue:String = signHeaders.sortedBy { it.first }
+            .joinToString("&") { "${it.first}=${it.second}" }
+            .plus("&appkey=$NET_CONFIG_APPKEY")
 
+        val newBuilder = originRequest.newBuilder()
+            .cacheControl(CacheControl.FORCE_NETWORK)
+        attachHeaders.forEach { newBuilder.header(it.first, it.second) }
+        newBuilder.header("sign", EncryptUtils.encryptMD5ToString(signValue))
 
-        return  chain.proceed()
+        if (originRequest.method == "POST" && requestBody != null) {
+            newBuilder.post(requestBody)
+        } else if (originRequest.method == "GET") {
+            newBuilder.get()
+        }
+        return  chain.proceed(newBuilder.build())
     }
 }
 

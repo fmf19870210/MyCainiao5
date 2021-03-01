@@ -1,8 +1,13 @@
-plugins {
-    id 'com.android.library'
-    id 'kotlin-android'
+
+//根据是否独立运行，将模块作为apk还是module
+if (singleModule.toBoolean()) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
 }
-apply plugin: 'kotlin-kapt'//kotlin语言使用注入框架，dataBinding都需要这个
+//apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'//kotlin语言使用注入框架，dataBinding都需要这个
+apply from: '../dependencies.gradle'
 
 
 android {
@@ -10,6 +15,10 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
+        //只有作为独立apk运行时候才需要applicationId
+        if (singleModule.toBoolean()) {
+            applicationId "com.cniao5.app.common"
+        }
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
@@ -35,15 +44,6 @@ android {
 }
 
 dependencies {
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.2.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
 
     //from dependencies.gradle
 
