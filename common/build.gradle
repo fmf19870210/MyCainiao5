@@ -1,46 +1,38 @@
-
-//根据是否独立运行，将模块作为apk还是module
-if (singleModule.toBoolean()) {
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
-//apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-kapt'//kotlin语言使用注入框架，dataBinding都需要这个
-apply from: '../dependencies.gradle'
+ apply plugin: 'com.android.library'
+ apply from: '../dependencies.gradle'
 
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+ //   compileSdkVersion 30
+  //  buildToolsVersion "30.0.2"
 
     defaultConfig {
         //只有作为独立apk运行时候才需要applicationId
-        if (singleModule.toBoolean()) {
-            applicationId "com.cniao5.app.common"
-        }
-        minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+       //  if (singleModule.toBoolean()) {
+      //      applicationId "com.cniao5.app.common"
+     //   }
+     //   minSdkVersion 23
+      //  targetSdkVersion 30
+     //   versionCode 1
+     //   versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+     //   testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+     //   consumerProguardFiles "consumer-rules.pro"
     }
 
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+  //  buildTypes {
+      //  release {
+       //     minifyEnabled false
+      //      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      //  }
+ //   }
+//    compileOptions {
+//        sourceCompatibility JavaVersion.VERSION_1_8
+//        targetCompatibility JavaVersion.VERSION_1_8
+//    }
+//    kotlinOptions {
+//        jvmTarget = '1.8'
+//    }
 }
 
 dependencies {

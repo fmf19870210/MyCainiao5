@@ -1,0 +1,18 @@
+apply plugin: 'com.android.library'
+apply from: '../dependencies.gradle'
+
+android {
+
+
+    defaultConfig {
+
+    }
+
+
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api project(path: ':common')
+}
