@@ -1,6 +1,6 @@
 apply plugin: 'com.alibaba.arouter' //添加arouter 插件
 apply plugin: 'koin' //添加koin注入框架
-apply plugin: 'com.didi.dokit'
+apply plugin: 'com.didi.dokit' //添加滴滴 dokit 插件
 
 
 buildscript {
@@ -32,7 +32,7 @@ buildscript {
         classpath "org.koin:koin-gradle-plugin:$koin_version"
         //添加阿里 Arouter插件
         classpath "com.alibaba:arouter-register:1.0.2"
-        //doraemonKit 调试辅助工具
+        //添加滴滴doraemonKit 调试辅助工具
         classpath 'com.didichuxing.doraemonkit:doraemonkit-plugin:3.2.0'
 
 

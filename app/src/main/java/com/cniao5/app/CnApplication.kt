@@ -3,6 +3,8 @@ package com.cniao5.app
 import android.app.Application
 import com.cniao5.app.ui.dashboard.DashboardViewModel
 import com.cniao5.common.BaseApplication
+import com.cniao5.common.ktx.application
+import com.cniao5.service.assistant.AssistantApp
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -18,8 +20,8 @@ class CnApplication  : BaseApplication(){
     override fun initConfig() {
         super.initConfig()
 
-        //doKit的初始化配置
-      //  AssistantApp.initConfig(application)
+     //滴滴的doKit的初始化配置
+    AssistantApp.initConfig(application)
     }
 
 
