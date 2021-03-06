@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">我是菜鸟の</string>
 
-    <string name="title_home">首页</string>
-    <string name="title_dashboard">面板</string>
-    <string name="title_notifications">通知</string>
+    <string name="str_home">首页</string>
+    <string name="str_course">课程</string>
+    <string name="str_study">学习中心</string>
+    <string name="str_mine">我的</string>
 </resources>

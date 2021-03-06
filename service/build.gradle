@@ -15,4 +15,10 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api project(path: ':common')
+
+    //调试助手的工具
+    debugImplementation "com.didichuxing.doraemonkit:doraemonkit:3.2.0"
+    releaseImplementation "com.didichuxing.doraemonkit:doraemonkit-no-op:3.2.0"
+
+
 }
