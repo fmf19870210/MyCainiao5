@@ -30,7 +30,7 @@ abstract class BaseApplication : Application() {
             modules(cnModules)
         }
 
-        //外部加载 module
+        //Koin加载外部的外部 module
         loadKoinModules(otherModuel)
 
         initConfig()

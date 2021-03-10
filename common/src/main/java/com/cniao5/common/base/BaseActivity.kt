@@ -89,7 +89,7 @@ abstract class BaseActivity<ActivityBinding:ViewDataBinding> : AppCompatActivity
      * block: (T?) -> Unit 是个高阶函数 代码块
      */
 
-    protected   fun <T:Any> LiveData<T>.observerKt(block: (T?) -> Unit){
+    protected  inline fun <T:Any> LiveData<T>.observeKt(crossinline block: (T?) -> Unit){
       //this@BaseActivity 是LifecycleOwner的实现子类
        this.observe(this@BaseActivity.viewLifeCycleOwner, Observer { data->
           //  block(data) 同理

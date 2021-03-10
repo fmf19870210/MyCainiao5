@@ -19,3 +19,9 @@ const val SP_KEY_USER_TOKEN = "sp_key_user_token"//用户token的标记
 
 
 //endregion
+
+
+
+
+
+const val  BASE_HOST="https://course.api.cniao5.com/"

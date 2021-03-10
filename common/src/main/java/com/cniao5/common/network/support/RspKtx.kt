@@ -95,6 +95,7 @@ suspend fun <T:Any> Call<T>.serverData():DataResult<T>{
         this.await()
     }.onFailure {
         result = DataResult.Error(RuntimeException(it))
+        it.printStackTrace()
     }
         .onSuccess {
             result=DataResult.Success(it)
