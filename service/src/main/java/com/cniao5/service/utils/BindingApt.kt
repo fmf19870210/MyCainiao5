@@ -26,7 +26,13 @@ fun  imgSrc(iv: ImageView, src:Any?){
  */
 @BindingAdapter("app:tint")
     fun  imgColor(iv:ImageView,@ColorRes color:Int){
-     if(color!=0)iv.setColorFilter(iv.resources.getColor(color))
+    if (color == 0) return
+    runCatching {iv.setColorFilter(iv.resources.getColor(color))}
+        .onFailure {
+            iv.setColorFilter(color)
+        }
+
+
 }
 
 
@@ -37,7 +43,11 @@ fun  imgSrc(iv: ImageView, src:Any?){
 
 @BindingAdapter("android:textColor")
 fun tvColor(tv: TextView, color:Int){
-    if(color==0) return
-    tv.setTextColor(tv.resources.getColor(color))
+    if (color == 0) return
+    runCatching {
+        tv.setTextColor(tv.resources.getColor(color))
+    }.onFailure {
+        tv.setTextColor(color)
+    }
 }
 
