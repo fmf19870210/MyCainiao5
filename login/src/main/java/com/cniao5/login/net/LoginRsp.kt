@@ -1,6 +1,7 @@
 package com.cniao5.login.net
 
 import androidx.annotation.Keep
+import com.cniao5.service.repo.CniaoUserInfo
 
 /**
   登录成功响应类   出参的结果实体类对象
@@ -24,31 +25,12 @@ data class  RegisterRsp(
 
 
 /**
- * 手机号和密码登录成功  接口响应返回实体类
+ * 手机号和密码登录成功  接口响应返回实体类LoginRsp(即为CniaoUserInfo )
  */
+// 给 LoginRsp 取别名  CniaoUserInfo,不影响其他地方调用LoginRsp
+typealias LoginRsp = CniaoUserInfo
 
-/**
- * @Keep 避免改实体类被混淆而无法解析
- *
- * */
-@Keep
-data class LoginRsp(
-    val course_permission: Boolean,
-    val token: String?,
-    val user: User?
-){
 
-    /**
-     * User 属于内部类
-     * */
-  @Keep
-  data class User(
-      val id: Int,//用户id
-      val logo_url: String?,//用户头像
-      val reg_time: String?,//用户注册时间
-      val username: String?//用户名
-  )
-}
 
 
 

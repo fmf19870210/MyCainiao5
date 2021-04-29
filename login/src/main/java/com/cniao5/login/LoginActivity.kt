@@ -4,13 +4,17 @@ import android.os.Parcel
 import android.os.Parcelable
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.cniao5.common.base.BaseActivity
+import com.cniao5.common.ktx.context
 import com.cniao5.login.databinding.ActivityLoginBinding
 import com.cniao5.login.net.RegisterRsp
+import com.cniao5.service.repo.CniaoDbHelper
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@Route(path = "/login/login")
 class LoginActivity :BaseActivity<ActivityLoginBinding>() {
   private val viewModel :LoginViewModel by viewModel()
 
@@ -42,10 +46,13 @@ class LoginActivity :BaseActivity<ActivityLoginBinding>() {
                         repoLogin()
                    }
             })
-
-
-            liveLoginRsp.observeKt{
-                ToastUtils.showShort("我的登录结果 " + it.toString())
+            liveLoginRsp.observeKt{rsp ->
+                ToastUtils.showShort("我的登录结果 " + rsp.toString())
+                rsp?.let {
+                    //用户信息同步到数据库
+                    CniaoDbHelper.insertUserInfo(context, it)
+                }
+                 finish()
             }
 
 

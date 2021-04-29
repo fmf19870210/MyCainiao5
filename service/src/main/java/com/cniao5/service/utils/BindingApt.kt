@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.annotation.ColorRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.cniao5.service.R
 
 /**
  *
@@ -17,7 +18,8 @@ import com.bumptech.glide.Glide
  */
 @BindingAdapter("app:srcCompat",requireAll = false)
 fun  imgSrc(iv: ImageView, src:Any?){
-    Glide.with(iv).load(src).into(iv)
+    val imgRes = src?: R.drawable.icon_account
+    Glide.with(iv).load(imgRes).into(iv)
 }
 
 

@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/mineFragment"
-        android:name="com.cniao5.mine.MineFragment"
+        android:name="com.cniao5.mine.ui.MineFragment"
         android:label="MineFragment"
         tools:layout="@layout/fragment_mine" />
 

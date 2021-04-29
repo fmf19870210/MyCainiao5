@@ -1,23 +1,18 @@
 package com.cniao5.app
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.blankj.utilcode.util.ToastUtils
 import com.cniao5.app.databinding.ActivityMainBinding
 import com.cniao5.common.base.BaseActivity
 import com.cniao5.common.widget.BnvMediator
 import com.cniao5.course.CourseFragment
 import com.cniao5.home.HomeFragment
-import com.cniao5.mine.MineFragment
+import com.cniao5.mine.MineContainerFragment
+import com.cniao5.mine.ui.MineFragment
 import com.cniao5.study.StudyFragment
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
@@ -33,7 +28,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
           INDEX_HOME to {HomeFragment()},
           INDEX_COURSE to {CourseFragment()},
           INDEX_STUDY to { StudyFragment()},
-          INDEX_MINE to { MineFragment() }
+       //   INDEX_MINE to { MineFragment() }
+          INDEX_MINE to { MineContainerFragment() }
       )
 
 

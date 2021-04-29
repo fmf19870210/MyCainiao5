@@ -10,6 +10,10 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import okio.Buffer
 
+/**
+ * 网络框架 添加公共header的拦截器
+ *
+ * */
 class CniaoHeaderInterceptor : Interceptor {
 
     companion object{
@@ -46,8 +50,8 @@ class CniaoHeaderInterceptor : Interceptor {
          if(localToken.isNotEmpty()){
              attachHeaders.add("token" to localToken)
          }*/
-        val tokenstr = "1A9391C7A85C0880174EC65D6A836FE0"
-        val localToken = SPStaticUtils.getString(SP_KEY_USER_TOKEN, tokenstr)
+
+        val localToken = SPStaticUtils.getString(SP_KEY_USER_TOKEN, originRequest.header("token"))?:"tokenNull"
         if (localToken.isNotEmpty()) {
             attachHeaders.add("token" to localToken)
         }

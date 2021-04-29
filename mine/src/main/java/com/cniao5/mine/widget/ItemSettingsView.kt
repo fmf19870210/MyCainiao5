@@ -45,7 +45,7 @@ class ItemSettingsView @JvmOverloads
              itemBean.iconColor =iconRGB
 
              //title设置:标题
-             val title = getString(R.styleable.ItemSettingsView_title)?:   "Title标题"
+             val title = getString(R.styleable.ItemSettingsView_title)?:   ""
              itemBean.title = title
              //title设置:颜色
             val titleRGB=getColor(R.styleable.ItemSettingsView_titleColor,resources.getColor(R.color.colorPrimaryText))
@@ -53,7 +53,7 @@ class ItemSettingsView @JvmOverloads
 
              //desc设置:标题
 
-             val desc = getString(R.styleable.ItemSettingsView_desc)?:"标题内容描述"
+             val desc = getString(R.styleable.ItemSettingsView_desc)?:""
                  itemBean.desc=desc
              //desc设置:标题颜色
              val descRGB=getColor(R.styleable.ItemSettingsView_descColor,0)
@@ -203,8 +203,8 @@ class ItemSettingsView @JvmOverloads
 @Keep
 class ItemSettingsBean{
     var iconRes: Any = R.drawable.ic_gift_card //标题图片
-    var title: String = "Title标题" //标题文本
-    var desc: String = "描述" //内容文本
+    var title: String = "" //标题文本
+    var desc: String = "" //内容文本
     var titleColor: Int = R.color.colorPrimaryText //标题字体颜色
     var descColor: Int = R.color.colorSecondaryText//内容文本颜色
     var iconColor: Int = R.color.colorPrimaryLight //标题图片颜色

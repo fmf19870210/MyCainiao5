@@ -47,13 +47,16 @@ class LoginRepo(private val service: LoginService):ILoginResource {
 
     }
 
+    /**
+     * 登录请求
+     * */
     override suspend fun requestLogin(body: LoginReqBody) {
             service.login(body)
                 .serverData()
                 .onSuccess {
                     onBizOK<LoginRsp>  { code, data, message ->
                         _loginRsp.value=data
-                        //同步到room数据库，登录状态
+                        //登录成功后,用户信息同步到room数据库，
                         LogUtils.i("登录接口成功: BizOK $data")
                     }
                     onBizError { code, message ->
